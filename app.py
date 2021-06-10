@@ -15,6 +15,7 @@ def dog_list():
     elif request.method == 'POST':
         pass
 
+
     elif request.method == 'DELETE':
         pass
 
