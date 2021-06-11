@@ -5,7 +5,14 @@ class Actions:
     def __init__(self):
         self.data = None
 
-
+    def get_data():
+        file = open('fci-breeds.csv', 'r')
+        reader = csv.reader(file)
+        json_list = []
+        for row in reader:
+            json_obj = Actions.create_json_obj(row)
+            json_list.append(json_obj)
+        return json_list
 
 
     def create_json_obj(array):

@@ -10,7 +10,9 @@ def hello():
 @app.route("/dog-list", methods=['GET','POST','DELETE'])
 def dog_list():
     if request.method == 'GET':
-        pass
+        return {
+            'result':Actions.get_data()
+        },200
 
     elif request.method == 'POST':
         pass
