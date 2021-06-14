@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask,request
 from actions import Actions
 app=Flask(__name__)
@@ -15,7 +17,10 @@ def dog_list():
         },200
 
     elif request.method == 'POST':
-        pass
+        column_name=request.json
+        return{
+            'result':Actions.give_data(column_name['column_name'])
+        },200
 
 
     elif request.method == 'DELETE':
