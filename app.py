@@ -23,7 +23,16 @@ def dog_list():
         },200
 
 
-    elif request.method == 'DELETE':
+
+@app.route("/update-dog-list", methods=['GET','POST','DELETE'])
+def update_dog_list():
+    if request.method == 'PATCH':
+        pass
+
+    elif request.method == 'POST':
+        pass
+
+    elif request.method == 'PUT':
         pass
 
 if __name__ == '__main__':
