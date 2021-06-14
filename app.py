@@ -9,7 +9,7 @@ app=Flask(__name__)
 def hello():
     return "Welcome!", 200
 
-@app.route("/dog-list", methods=['GET','POST','DELETE'])
+@app.route("/dog-list", methods=['GET','POST'])
 def dog_list():
     if request.method == 'GET':
         return {
@@ -24,7 +24,7 @@ def dog_list():
 
 
 
-@app.route("/update-dog-list", methods=['GET','POST','DELETE'])
+@app.route("/update-dog-list", methods=['PATCH','POST','PUT'])
 def update_dog_list():
     if request.method == 'PATCH':
         pass
