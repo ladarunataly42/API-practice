@@ -79,23 +79,37 @@ class Actions:
         return('Succes')
 
 
+    def add_row(processor,key,value):
+
+        a = Actions.columns('id')
+        k=len(processor)
+        tl = (a[-1])+1
+        str1 = ''.join(str(tl))
+        list1=['','name','section','provisional','country','url','image','pdf']
+        list=[str1,'name','section','provisional','country','url','image','pdf']
+        q=0
+        for i in key:
+            for j in list:
+                if j==i:
+                    index=list.index(j)
+                    list[index]=value[q]
+                    q=q+1
+        for i in list:
+            for j in list1:
+                if i == j:
+                    index=list.index(j)
+                    list[index]=' '
+        obj = Actions.create_json_obj(list)
 
 
+        z = 0
+        if z <= k:
+            for w in a:
+                if w == tl-1:
 
+                    processor[z][str1]=obj
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                z = z + 1
+        return processor
 
 

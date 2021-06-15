@@ -37,7 +37,12 @@ def update_dog_list():
 
 
     elif request.method == 'POST':
-        pass
+        data=request.json
+        value=list(data.values())
+        key=list(data.keys())
+        return {
+            'result': Actions.add_row(processor,key,value)
+        }
 
     elif request.method == 'PUT':
         pass
