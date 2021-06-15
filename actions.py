@@ -1,6 +1,9 @@
 import csv
 import json
+from pprint import pprint
+
 import pandas as pd
+
 
 class Actions:
 
@@ -26,9 +29,9 @@ class Actions:
     def create_json_obj(array):
         return {
             array[0]:{
-                'id': array[1],
-                'name': array[2],
-                'provisional': array[3],
+                'name': array[1],
+                'section': array[2],
+                'provisional':array[3],
                 'country': array[4],
                 'url': array[5],
                 'image': array[6],
@@ -61,8 +64,27 @@ class Actions:
         name=rows[y].tolist()
         return name
 
-    def get_request(column_name):
-        json=Actions.get_data()
+    def get_request(processor,key,value):
+        a = Actions.columns('id')
+        k=len(processor)
+        i=0
+        if i <= k:
+             for j in a:
+                str1 = ''.join(str(j))
+                if value[0]==str1:
+                    print(processor[i][str1][key])
+                    processor[i][str1][key]=value[1]
+                    print(processor[i][str1][key])
+                i = i + 1
+        return('Succes')
+
+
+
+
+
+
+
+
 
 
 

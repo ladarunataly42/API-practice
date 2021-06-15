@@ -3,7 +3,7 @@ import json
 from flask import Flask,request
 from actions import Actions
 app=Flask(__name__)
-
+processor=Actions.get_data()
 
 @app.route("/home")
 def hello():
@@ -13,7 +13,7 @@ def hello():
 def dog_list():
     if request.method == 'GET':
         return {
-            'result':Actions.get_data()
+            'result':processor
         },200
 
     elif request.method == 'POST':
@@ -27,7 +27,14 @@ def dog_list():
 @app.route("/update-dog-list", methods=['PATCH','POST','PUT'])
 def update_dog_list():
     if request.method == 'PATCH':
-        pass
+        data=request.json
+        value=list(data.values())
+        key=list(data.keys())
+
+        return{
+            'result':Actions.get_request(processor,key[1], value)
+        }
+
 
     elif request.method == 'POST':
         pass
@@ -37,3 +44,5 @@ def update_dog_list():
 
 if __name__ == '__main__':
     app.run()
+
+
