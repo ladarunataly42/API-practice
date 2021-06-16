@@ -45,7 +45,12 @@ def update_dog_list():
         }
 
     elif request.method == 'PUT':
-        pass
+        data = request.json
+        value = list(data.values())
+        key = list(data.keys())
+        return {
+            'result': Actions.modify_row(processor, key, value)
+        }
 
 if __name__ == '__main__':
     app.run()

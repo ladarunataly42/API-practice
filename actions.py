@@ -107,9 +107,39 @@ class Actions:
             for w in a:
                 if w == tl-1:
 
-                    processor[z][str1]=obj
+                    processor[z][str1]=obj[str1]
 
                 z = z + 1
         return processor
+
+    def modify_row(processor, key, value):
+        a = Actions.columns('id')
+        k = len(processor)
+        # str1 = ''.join(str(tl))
+        list1 = ['', '', '', '', '', '', '', '']
+        list = ['id', 'name', 'section', 'provisional', 'country', 'url', 'image', 'pdf']
+        q = 0
+        for i in key:
+            for j in list:
+                if j == i:
+                    index = list.index(j)
+                    list[index] = value[q]
+                    q = q + 1
+        for i in list:
+            for j in list1:
+                if i == j:
+                    return ("ERROR!!", 400)
+        obj = Actions.create_json_obj(list)
+
+        z = 0
+        if z <= k:
+            for w in a:
+                str1 = ''.join(str(w))
+                if str1 == value[0]:
+                    processor[z][str1] = obj[str1]
+
+                z = z + 1
+        return processor
+
 
 
