@@ -141,5 +141,6 @@ class Actions:
                 z = z + 1
         return processor
 
-
+    def delete_id(key,value):
+        print(key,value)
 
