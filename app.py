@@ -57,10 +57,10 @@ def delete_dog_breed():
     if request.method == 'DELETE':
         data=request.json
         value=list(data.values())
-        key=list(data.keys())
+
 
         return{
-            'result':Actions.delete_id(key,value)
+            'result':Actions.delete_id(processor,value)
         }
 
 if __name__ == '__main__':

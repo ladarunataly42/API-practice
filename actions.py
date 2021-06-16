@@ -1,8 +1,10 @@
 import csv
 import json
+
 from pprint import pprint
 
 import pandas as pd
+
 
 
 class Actions:
@@ -141,6 +143,17 @@ class Actions:
                 z = z + 1
         return processor
 
-    def delete_id(key,value):
-        print(key,value)
+    def delete_id(processor,value):
+
+
+        for i in range(len(value[0])):
+            str1 = ''.join(str(value[0][i]))
+            a=int(value[0][i])
+            if str1 in processor[a-1]:
+                del processor[a-1][str1]
+            else:
+                return "Id not found", 400
+
+
+        return 'SUCCES'
 
