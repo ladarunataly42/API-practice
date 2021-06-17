@@ -1,5 +1,4 @@
 import json
-
 from flask import Flask,request
 from actions import Actions
 app=Flask(__name__)
@@ -57,7 +56,6 @@ def delete_dog_breed():
     if request.method == 'DELETE':
         data=request.json
         value=list(data.values())
-
 
         return{
             'result':Actions.delete_id(processor,value)
