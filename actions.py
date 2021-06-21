@@ -8,6 +8,7 @@ class Actions:
     def __init__(self):
         self.data = None
 
+
     def get_data():
         file = open('fci-breeds.csv', 'r')
         reader = csv.reader(file)

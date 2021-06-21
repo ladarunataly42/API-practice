@@ -8,6 +8,7 @@ processor=Actions.get_data()
 def hello():
     return "Welcome!", 200
 
+
 @app.route("/dog-list", methods=['GET','POST'])
 def dog_list():
     if request.method == 'GET':
