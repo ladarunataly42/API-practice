@@ -40,11 +40,11 @@ class Actions:
 
 
     def give_data(column_name):
-        jsonData=Actions.get_data()
-        jsonlist=[]
+        json_Data=Actions.get_data()
+        json_list=[]
         name=Actions.columns('name')
         column=Actions.columns(column_name)
-        for col in jsonData:
+        for col in json_Data:
             for i in range(len(name)):
                 new_json = {
                     i+1: {
@@ -52,8 +52,8 @@ class Actions:
                         column_name: column[i]
                     }
                 }
-                jsonlist.append(new_json)
-        return jsonlist
+                json_list.append(new_json)
+        return json_list
 
     def columns(y):
         file = open('fci-breeds.csv')
@@ -63,11 +63,11 @@ class Actions:
         return name
 
     def get_request(processor,key,value):
-        a = Actions.columns('id')
-        k=len(processor)
+        column_id= Actions.columns('id')
+        length=len(processor)
         i=0
-        if i <= k:
-             for j in a:
+        if i <= length:
+             for j in column_id:
                 str1 = ''.join(str(j))
                 if value[0]==str1:
                     print(processor[i][str1][key])
@@ -79,64 +79,63 @@ class Actions:
 
     def add_row(processor,key,value):
 
-        a = Actions.columns('id')
-        k=len(processor)
-        tl = (a[-1])+1
-        str1 = ''.join(str(tl))
+        column_id = Actions.columns('id')
+        length=len(processor)
+        new_index = (column_id[-1])+1
+        str1 = ''.join(str(new_index))
         list1=['','name','section','provisional','country','url','image','pdf']
-        list=[str1,'name','section','provisional','country','url','image','pdf']
+        main_list=[str1,'name','section','provisional','country','url','image','pdf']
         q=0
         for i in key:
-            for j in list:
+            for j in main_list:
                 if j==i:
-                    index=list.index(j)
-                    list[index]=value[q]
+                    index=main_list.index(j)
+                    main_list[index]=value[q]
                     q=q+1
-        for i in list:
+        for i in main_list:
             for j in list1:
                 if i == j:
-                    index=list.index(j)
-                    list[index]=' '
-        obj = Actions.create_json_obj(list)
+                    index=main_list.index(j)
+                    main_list[index]=' '
+        obj = Actions.create_json_obj(main_list)
 
 
-        z = 0
-        if z <= k:
-            for w in a:
-                if w == tl-1:
+        itter = 0
+        if itter <= length:
+            for w in  column_id:
+                if w == new_index-1:
+                    processor[itter][str1]=obj[str1]
 
-                    processor[z][str1]=obj[str1]
-
-                z = z + 1
+                itter = itter + 1
         return processor
 
     def modify_row(processor, key, value):
-        a = Actions.columns('id')
-        k = len(processor)
+        column_id = Actions.columns('id')
+        length = len(processor)
         # str1 = ''.join(str(tl))
         list1 = ['', '', '', '', '', '', '', '']
-        list = ['id', 'name', 'section', 'provisional', 'country', 'url', 'image', 'pdf']
-        q = 0
+        main_list= ['id', 'name', 'section', 'provisional', 'country', 'url', 'image', 'pdf']
+        itter = 0
         for i in key:
-            for j in list:
+            for j in main_list:
                 if j == i:
-                    index = list.index(j)
-                    list[index] = value[q]
-                    q = q + 1
-        for i in list:
+                    index = main_list.index(j)
+                    main_list[index] = value[itter]
+                    itter = itter + 1
+        for i in main_list:
             for j in list1:
                 if i == j:
                     return ("ERROR!!", 400)
-        obj = Actions.create_json_obj(list)
+        obj = Actions.create_json_obj(main_list)
 
-        z = 0
-        if z <= k:
-            for w in a:
+        itter2 = 0
+        if itter2 <=length:
+            for w in column_id:
                 str1 = ''.join(str(w))
                 if str1 == value[0]:
-                    processor[z][str1] = obj[str1]
+                    processor[itter2][str1] = obj[str1]
 
-                z = z + 1
+                itter2 = itter2 + 1
         return processor
 
     def delete_id(processor,value):
@@ -155,7 +154,7 @@ class Actions:
 
 
         elif type(value[0]) is list:
-            it=1
+
             index=0
             for i in id_columns:
                 str_id = ''.join(str(i))
